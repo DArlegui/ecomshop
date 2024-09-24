@@ -11,7 +11,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
-import { MenuIcon } from 'lucide-react';
+import { CircleUser, MenuIcon } from 'lucide-react';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { ReactNode } from 'react';
@@ -52,8 +52,11 @@ export default async function DashboardLayout({ children }: { children: ReactNod
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button asChild variant="secondary" size="icon" className="rounded-full hover:cursor-pointer">
-              <Image src={user.picture!} alt="User Icon" width={40} height={40} />
-              {/* <CircleUser className="h-5 w-5" /> */}
+              {user.picture ? (
+                <Image src={user.picture!} alt="User Icon" width={40} height={40} />
+              ) : (
+                <CircleUser className="h-5 w-5" />
+              )}
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
