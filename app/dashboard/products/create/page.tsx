@@ -1,10 +1,12 @@
+'use client';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
+import { UploadDropzone } from '@/lib/uploadthing';
 import { ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 
@@ -57,8 +59,24 @@ export default function ProductCreatePage() {
                 </SelectContent>
               </Select>
             </div>
+
+            <div className="flex flex-col gap-3">
+              <Label>Images</Label>
+              <UploadDropzone
+                endpoint="imageUploader"
+                onClientUploadComplete={(res) => {
+                  alert('Image uploaded!');
+                }}
+                onUploadError={(err) => {
+                  alert('Error uploading image');
+                }}
+              />
+            </div>
           </div>
         </CardContent>
+        <CardFooter>
+          <Button>Create Product</Button>
+        </CardFooter>
       </Card>
     </form>
   );
