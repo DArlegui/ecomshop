@@ -1,5 +1,6 @@
 'use client';
 import { createProduct } from '@/app/actions/actions';
+import { SubmitButton } from '@/components/SubmitButtons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -180,7 +181,7 @@ export default function ProductCreatePage() {
           </div>
         </CardContent>
         <CardFooter>
-          <Button>Create Product</Button>
+          <SubmitButton />
         </CardFooter>
       </Card>
     </form>

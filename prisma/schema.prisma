@@ -28,7 +28,7 @@ model Product {
   name        String
   description String
   status      ProductStatus
-  price       Float
+  price       Int
   images      String[]
   category    Category
   isFeatured  Boolean       @default(false)
@@ -44,6 +44,6 @@ enum ProductStatus {
 
 enum Category {
   men
-  woman
+  women
   kids
 }
