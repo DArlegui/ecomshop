@@ -4,7 +4,7 @@ import { useFormStatus } from 'react-dom';
 import { Button } from './ui/button';
 import React from 'react';
 
-export function SubmitButton() {
+export function SubmitButton({ text }: { text: string }) {
   const { pending } = useFormStatus();
 
   return (
@@ -14,7 +14,7 @@ export function SubmitButton() {
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
         </Button>
       ) : (
-        <Button type="submit">Create Product</Button>
+        <Button type="submit">{text}</Button>
       )}
     </>
   );
