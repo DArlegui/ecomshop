@@ -105,7 +105,7 @@ export function EditForm({ data }: iAppProps) {
 
             <div className="flex flex-col gap-3">
               <Label>Featured Product</Label>
-              <Switch key={fields.isFeatured.key} name={fields.isFeatured.name} checked={data.isFeatured} />
+              <Switch key={fields.isFeatured.key} name={fields.isFeatured.name} defaultChecked={data.isFeatured} />
               <p className="text-red-500">{fields.isFeatured.errors}</p>
             </div>
 
