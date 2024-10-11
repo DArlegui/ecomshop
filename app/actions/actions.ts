@@ -1,6 +1,6 @@
 'use server';
 import prisma from '@/lib/db';
-import { productSchema } from '@/lib/zodSchemas';
+import { bannerSchema, productSchema } from '@/lib/zodSchemas';
 import { parseWithZod } from '@conform-to/zod';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import { redirect } from 'next/navigation';
@@ -95,4 +95,47 @@ export async function deleteProduct(formData: FormData) {
   });
 
   redirect('/dashboard/products');
+}
+
+export async function createBanner(prevState: unknown, formData: FormData) {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+
+  if (!user || user.email !== process.env.ADMIN) {
+    return redirect('/');
+  }
+
+  const submission = parseWithZod(formData, {
+    schema: bannerSchema,
+  });
+
+  if (submission.status !== 'success') {
+    return submission.reply();
+  }
+
+  await prisma.banner.create({
+    data: {
+      title: submission.value.title,
+      imageString: submission.value.imageString,
+    },
+  });
+
+  redirect('/dashboard/banner');
+}
+
+export async function deleteBanner(formData: FormData) {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+
+  if (!user || user.email !== process.env.ADMIN) {
+    return redirect('/');
+  }
+
+  await prisma.banner.delete({
+    where: {
+      id: formData.get('bannerId') as string,
+    },
+  });
+
+  redirect('/dashboard/banner');
 }
