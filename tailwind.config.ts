@@ -59,7 +59,8 @@ const config: Config = {
       },
     },
   },
+  corePlugins: { aspectRatio: false },
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/aspect-ratio')],
 };
 export default withUt(config);
